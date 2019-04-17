@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_lates"
+            android:icon="@drawable/icon_latest"
+            android:title="Latest" />
+        <item
+            android:id="@+id/nav_category"
+            android:icon="@drawable/icon_category"
+            android:title="Category" />
+        <item
+            android:id="@+id/nav_gift"
+            android:icon="@drawable/icon_gift"
+            android:title="Gift" />
+        <item
+            android:id="@+id/nav_favorites"
+            android:icon="@drawable/icon_favorites"
+            android:title="My Favorites" />
+        <item
+            android:id="@+id/nav_tareap"
+            android:icon="@drawable/icon_rateap"
+            android:title="Rate App" />
+        <item
+            android:id="@+id/nav_moreapp"
+            android:icon="@drawable/icon_moreapp"
+            android:title="More App" />
+        <item
+            android:id="@+id/nav_aboutus"
+            android:icon="@drawable/icon_aboutus"
+            android:title="About Us" />
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/icon_setting"
+            android:title="Gift" />
+        <item
+            android:id="@+id/nav_police"
+            android:icon="@drawable/icon_police"
+            android:title="Privacy Police" />
+
+    </group>
+
+
+</menu>

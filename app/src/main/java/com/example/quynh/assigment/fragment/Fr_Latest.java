@@ -1,0 +1,63 @@
+package com.example.quynh.assigment.fragment;
+
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.example.quynh.assigment.R;
+import com.example.quynh.assigment.adapter.AdapterLatest;
+import com.example.quynh.assigment.model.model_latest.FragmentLatest;
+import com.example.quynh.assigment.model.model_latest.HDWALLPAPER_LATEST;
+import com.example.quynh.assigment.retrofit.ApiClient;
+import com.example.quynh.assigment.retrofit.ApiInterface;
+
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class Fr_Latest extends Fragment {
+    RecyclerView recyclerView;
+    AdapterLatest adapter;
+    List<HDWALLPAPER_LATEST> list;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view =  inflater.inflate(R.layout.fragment_latest,container,false);
+
+        recyclerView = view.findViewById(R.id.rc_latest);
+
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+        Call<FragmentLatest> call = apiService.getLatest();
+        call.enqueue(new Callback<FragmentLatest>() {
+
+            @Override
+            public void onResponse(Call<FragmentLatest> call, Response<FragmentLatest> response) {
+                list = response.body().getHDWALLPAPER();
+                adapter = new AdapterLatest(Fr_Latest.this,list);
+                RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(),2);
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setAdapter(adapter);
+
+                Toast.makeText(getContext(), "TRUE", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<FragmentLatest> call, Throwable t) {
+                Toast.makeText(getContext(), "ERROR", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return view;
+}}
